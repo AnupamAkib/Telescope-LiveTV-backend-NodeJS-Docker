@@ -35,19 +35,41 @@ app.get("/tv", async function(req, res){
 })
 
 
+let _browser;
+
+async function initBrowser() {
+    if (!_browser) { //for optimization 
+        _browser = await puppeteer.launch({
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+                '--disable-dev-shm-usage',
+                '--disable-accelerated-2d-canvas',
+                '--disable-gpu',
+                '--window-size=1280x800'
+            ],
+            executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium'
+        });
+    }
+    return _browser;
+}
+
 async function searchLiveYouTube(query) {
-    const browser = await puppeteer.launch({
+    /*const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium'
-    });
+    });*/
+
+    const browser = await initBrowser();
 
     const page = await browser.newPage();
     const searchUrl = `https://www.youtube.com/results?search_query=${query}&sp=EgJAAQ%253D%253D`;
 
     console.log(searchUrl);
 
-    await page.goto(searchUrl, { waitUntil: 'networkidle2', timeout: 80000 }); //80 seconds
+    await page.goto(searchUrl, { waitUntil: 'networkidle2'}); //80 seconds
 
     const videos = await page.evaluate(() => {
         const videoNodes = document.querySelectorAll('ytd-video-renderer, ytd-grid-video-renderer');
@@ -68,7 +90,7 @@ async function searchLiveYouTube(query) {
         return liveVideos;
     });
 
-    await browser.close();
+    await page.close();
     return videos;
 }
 
