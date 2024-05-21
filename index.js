@@ -56,13 +56,13 @@ async function initBrowser() {
 }
 
 async function searchLiveYouTube(query) {
-    /*const browser = await puppeteer.launch({
+    const browser = await puppeteer.launch({
         headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium'
-    });*/
+    });
 
-    const browser = await initBrowser();
+    //const browser = await initBrowser();
 
     const page = await browser.newPage();
     const searchUrl = `https://www.youtube.com/results?search_query=${query}&sp=EgJAAQ%253D%253D`;
@@ -90,7 +90,7 @@ async function searchLiveYouTube(query) {
         return liveVideos;
     });
 
-    await page.close();
+    await browser.close();
     return videos;
 }
 
