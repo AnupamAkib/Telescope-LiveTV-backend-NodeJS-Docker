@@ -52,7 +52,7 @@ async function initBrowser() {
             executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium'
         });
     }
-    return _browser;
+    return _browser; 
 }
 
 async function searchLiveYouTube(query) {
