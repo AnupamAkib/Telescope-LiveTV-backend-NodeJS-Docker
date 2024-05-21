@@ -69,7 +69,7 @@ async function searchLiveYouTube(query) {
 
     console.log(searchUrl);
 
-    await page.goto(searchUrl, { waitUntil: 'networkidle2'}); //80 seconds
+    await page.goto(searchUrl, { waitUntil: 'networkidle2', timeout: 90000 }); //90 seconds
 
     const videos = await page.evaluate(() => {
         const videoNodes = document.querySelectorAll('ytd-video-renderer, ytd-grid-video-renderer');
