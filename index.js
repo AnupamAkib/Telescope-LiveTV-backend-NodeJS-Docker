@@ -72,11 +72,11 @@ const tvData = [
     },{
         title : "DBC NEWS",
         country: "BD",
-        logo : ""
+        logo : "/dbc.jpg"
     },{
         title : "Rtv Music",
         country: "BD",
-        logo : ""
+        logo : "/rtv_music.jpg"
     },{
         title : "Al Jazeera English",
         country: "X",
@@ -149,7 +149,7 @@ app.get("/tv", async function(req, res){
         for(let i=0; i<vdo.length; i++){
             let found = false;
             for(let j=0; j<tvData.length; j++){
-                if(vdo[i].channelName == tvData[j].title){
+                if(vdo[i].channelName.trim() == tvData[j].title.trim()){
                     vdo[i].channelLogo = tvData[j].logo.length? hostname+tvData[j].logo : "";
                     vdo[i].country = tvData[j].country;
                     found = true;
