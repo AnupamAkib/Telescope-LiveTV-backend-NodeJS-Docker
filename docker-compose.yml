@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   node:
     build:
@@ -6,5 +6,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000" # Adjust port if needed
-    environment:
-      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+    env_file:
+      - .env

@@ -4,7 +4,6 @@ const axios = require('axios');
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var puppeteer = require('puppeteer');
 var app = express();
 var multer = multer();
 
@@ -16,115 +15,17 @@ app.use(express.static('assets'));
 const PORT = process.env.PORT || 3000;
 
 
-const tvData = [
-    {
-        title : "Ekattor TV",
-        country: "BD",
-        logo : "/ekattor.jpg"
-    },{
-        title : "SOMOY TV",
-        country: "BD",
-        logo : "/somoy.jpg"
-    },{
-        title : "Independent Television",
-        country: "BD",
-        logo : "/independent.jpg"
-    },{
-        title : "Jamuna TV",
-        country: "BD",
-        logo : "/jamuna.jpg"
-    },{
-        title : "Channel 24",
-        country: "BD",
-        logo : "/channel24.jpg"
-    },{
-        title : "Rtv News",
-        country: "BD",
-        logo : "/rtv.jpg"
-    },{
-        title : "Jamuna TV Plus",
-        country: "BD",
-        logo : "/jamuna.jpg"
-    },{
-        title : "EKHON TV",
-        country: "BD",
-        logo : "/ekhon.jpg"
-    },{
-        title : "TV9 Bangla",
-        country: "IN",
-        logo : "/tv9.jpg"
-    },{
-        title : "ATN News",
-        country: "BD",
-        logo : "/atn_news.jpg"
-    },{
-        title : "ATN News Live",
-        country: "BD",
-        logo : "/atn_news.jpg"
-    },{
-        title : "Zee 24 Ghanta",
-        country: "IN",
-        logo : "/zee24hour.jpg"
-    },{
-        title : "ABP ANANDA",
-        country: "IN",
-        logo : "/abp.jpg"
-    },{
-        title : "DBC NEWS",
-        country: "BD",
-        logo : "/dbc.jpg"
-    },{
-        title : "Rtv Music",
-        country: "BD",
-        logo : "/rtv_music.jpg"
-    },{
-        title : "Al Jazeera English",
-        country: "X",
-        logo : "/aljazeera.jpg"
-    },{
-        title : "NASA",
-        country: "X",
-        logo : "/nasa.jpg"
-    },{
-        title : "Zee News",
-        country: "IN",
-        logo : "/zee_news.jpg"
-    },{
-        title : "TRT World",
-        country: "X",
-        logo : "/trt.jpg"
-    },{
-        title : "NDTV India",
-        country: "IN",
-        logo : "/ndtv.jpg"
-    },{
-        title : "News24 Daily",
-        country: "BD",
-        logo : "/news24.jpg"
-    },{
-        title : "Channel i News",
-        country: "BD",
-        logo : "/channel_i.jpg"
-    },{
-        title : "NTV Live",
-        country: "BD",
-        logo : "/ntv.jpg"
-    },{
-        title : "BanglaVision LIVE",
-        country: "BD",
-        logo : "/banglavision.jpg"
-    }
-];
+//console.log(tvData);
 
 app.listen(PORT, function () {
     console.log("Server Started");
 })
 
+const tvData = require("./channels.json");
 
+const api = require("./LoadBalancing/load_distributing");
 
-
-
-const url = "https://api.apify.com/v2/acts/apify~puppeteer-scraper/runs/last/dataset/items?token=apify_api_A2Gxh0PYVUL1pc6XHmHDvk53I1wlaf0Mp3dV";
+const url = process.env[api.getDistributedAPI()];
 
 
 const hostname = "https://livetv-njf6.onrender.com";
@@ -133,6 +34,7 @@ const hostname = "https://livetv-njf6.onrender.com";
 
 
 app.get("/", function (req, res) {
+    //console.log(url);
     res.send("<h1>Server Running...</h1>");
 })
 
