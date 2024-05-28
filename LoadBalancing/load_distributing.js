@@ -7,11 +7,12 @@ const getDistributedAPI = () => {
     if(minute.length==1){
         minute = "0"+minute;
     }
-    const timeNow = hour+minute;
+    let timeNow = hour+minute+"";
     
     for(let i=apiSchedule.length-1; i>=0; i--){
-        let scheduleTime = apiSchedule[i].Hour + apiSchedule[i].Minute;
-        if(parseInt(timeNow) > parseInt(scheduleTime)){
+        let scheduleTime = apiSchedule[i].Hour + apiSchedule[i].Minute + "";
+        //if(parseInt(timeNow, 10) > parseInt(scheduleTime, 10)){
+        if(timeNow > scheduleTime){
             return apiSchedule[i].API;
         }
     }

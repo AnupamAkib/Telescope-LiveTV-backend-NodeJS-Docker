@@ -41,12 +41,15 @@ app.get("/", function (req, res) {
 
 app.get("/tv", async function(req, res){
     try {
+        console.log(api.getDistributedAPI());
+        console.log(url);
+
         const response = await axios.get(url);
         const data = response.data;
 
         let vdo = data[0].videos;
 
-        console.log(vdo)
+        //console.log(vdo)
 
         for(let i=0; i<vdo.length; i++){
             let found = false;
