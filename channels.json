@@ -118,5 +118,10 @@
         "title": "BanglaVision LIVE",
         "country": "BD",
         "logo": "/banglavision.jpg"
+    },
+    {
+        "title": "Desh TV LIVE",
+        "country": "BD",
+        "logo": "/deshtv.jpg"
     }
 ]
