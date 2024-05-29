@@ -15,8 +15,6 @@ app.use(express.static('assets'));
 const PORT = process.env.PORT || 3000;
 
 
-//console.log(tvData);
-
 app.listen(PORT, function () {
     console.log("Server Started");
 })
@@ -25,7 +23,7 @@ const tvData = require("./channels.json");
 
 const api = require("./LoadBalancing/load_distributing");
 
-const url = process.env[api.getDistributedAPI()];
+let url = "";
 
 
 const hostname = "https://livetv-njf6.onrender.com";
@@ -41,6 +39,11 @@ app.get("/", function (req, res) {
 
 app.get("/tv", async function(req, res){
     try {
+        if(api.getDistributedAPI() == "API1"){ url = process.env.API1; }
+        if(api.getDistributedAPI() == "API2"){ url = process.env.API2; }
+        if(api.getDistributedAPI() == "API3"){ url = process.env.API3; }
+        if(api.getDistributedAPI() == "API4"){ url = process.env.API4; }
+
         console.log(api.getDistributedAPI());
         console.log(url);
 
