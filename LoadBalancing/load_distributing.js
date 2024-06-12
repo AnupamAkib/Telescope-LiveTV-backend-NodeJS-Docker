@@ -12,10 +12,9 @@ const getDistributedAPI = () => {
     for(let i=apiSchedule.length-1; i>=0; i--){
         let scheduleTime = parseInt(apiSchedule[i].Hour + apiSchedule[i].Minute + "", 10);
 
-        console.log({timeNow, scheduleTime});
-        console.log("is timeNow > scheduleTime? = " + (timeNow > scheduleTime));
+        //console.log({timeNow, scheduleTime});
+        //console.log("is timeNow > scheduleTime? = " + (timeNow > scheduleTime));
 
-        //if(parseInt(timeNow, 10) > parseInt(scheduleTime, 10)){
         if(timeNow > scheduleTime){
             return apiSchedule[i].API;
         }

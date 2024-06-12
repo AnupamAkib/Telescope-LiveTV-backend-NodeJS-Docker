@@ -1,0 +1,6 @@
+module.exports = {
+    CHANNEL_FILTER_TIME : 86400000, //24 hours
+    EXCEPTION : -1,
+    NEW_CHANNEL_ADDED : 1,
+    EXISTING_CHANNEL_UPDATED : 2
+};
