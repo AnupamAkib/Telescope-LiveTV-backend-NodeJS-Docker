@@ -16,13 +16,6 @@ app.use(express.static('assets'));
 
 const PORT = process.env.PORT || 3000;
 
-/*app.listen(PORT, function () {
-    console.log("Server Started");
-});*/
-
-
-
-//-----------------------------------------------------
 
 app.get("/", function (req, res) {
     res.send("<h1>Server Running (MVC)</h1>");
@@ -55,7 +48,7 @@ mongoose
 
 const channelRoute = require("./routes/channelRoute");
 
-app.use("/channel", channelRoute); //Channel Route
+app.use("/tv", channelRoute); //Channel Route
 
 
 
@@ -65,9 +58,9 @@ app.use("/channel", channelRoute); //Channel Route
 
 //LEGACY CODE - UP & RUNNING!
 
-app.get("/tv", async function (req, res) { // LEGACY CODEBASE FOR TEMPORARY SUPPORT
+app.get("/legacy", async function (req, res) { // LEGACY CODEBASE FOR TEMPORARY SUPPORT
   const tvData = require("./channels.json");
-  const api = require("./LoadBalancing/load_distributing");
+  const api = require("./LoadBalancer/load_distribute");
   let url = "";
   const hostname = "https://livetv-njf6.onrender.com";
 

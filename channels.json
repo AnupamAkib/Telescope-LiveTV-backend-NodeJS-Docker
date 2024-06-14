@@ -2,126 +2,157 @@
     {
         "title": "Ekattor TV",
         "country": "BD",
-        "logo": "/ekattor.jpg"
+        "logo": "/ekattor.jpg",
+        "priority" : 1
     },
     {
         "title": "SOMOY TV",
         "country": "BD",
-        "logo": "/somoy.jpg"
+        "logo": "/somoy.jpg",
+        "priority" : 2
     },
     {
         "title": "Independent Television",
         "country": "BD",
-        "logo": "/independent.jpg"
+        "logo": "/independent.jpg",
+        "priority" : 3
     },
     {
         "title": "Jamuna TV",
         "country": "BD",
-        "logo": "/jamuna.jpg"
+        "logo": "/jamuna.jpg",
+        "priority" : 4
     },
     {
         "title": "Channel 24",
         "country": "BD",
-        "logo": "/channel24.jpg"
+        "logo": "/channel24.jpg",
+        "priority" : 5
     },
     {
         "title": "Rtv News",
         "country": "BD",
-        "logo": "/rtv.jpg"
+        "logo": "/rtv.jpg",
+        "priority" : 6
     },
     {
         "title": "Jamuna TV Plus",
         "country": "BD",
-        "logo": "/jamuna.jpg"
+        "logo": "/jamuna.jpg",
+        "priority" : 7
     },
     {
         "title": "EKHON TV",
         "country": "BD",
-        "logo": "/ekhon.jpg"
-    },
-    {
-        "title": "TV9 Bangla",
-        "country": "IN",
-        "logo": "/tv9.jpg"
+        "logo": "/ekhon.jpg",
+        "priority" : 8
     },
     {
         "title": "ATN News",
         "country": "BD",
-        "logo": "/atn_news.jpg"
+        "logo": "/atn_news.jpg",
+        "priority" : 9
     },
     {
         "title": "ATN News Live",
         "country": "BD",
-        "logo": "/atn_news.jpg"
+        "logo": "/atn_news.jpg",
+        "priority" : 10
     },
     {
-        "title": "Zee 24 Ghanta",
-        "country": "IN",
-        "logo": "/zee24hour.jpg"
-    },
-    {
-        "title": "ABP ANANDA",
-        "country": "IN",
-        "logo": "/abp.jpg"
+        "title": "ATN News TV",
+        "country": "BD",
+        "logo": "/atn_news.jpg",
+        "priority" : 11
     },
     {
         "title": "DBC NEWS",
         "country": "BD",
-        "logo": "/dbc.jpg"
+        "logo": "/dbc.jpg",
+        "priority" : 12
     },
     {
         "title": "Rtv Music",
         "country": "BD",
-        "logo": "/rtv_music.jpg"
-    },
-    {
-        "title": "Al Jazeera English",
-        "country": "X",
-        "logo": "/aljazeera.jpg"
-    },
-    {
-        "title": "NASA",
-        "country": "X",
-        "logo": "/nasa.jpg"
-    },
-    {
-        "title": "Zee News",
-        "country": "IN",
-        "logo": "/zee_news.jpg"
-    },
-    {
-        "title": "TRT World",
-        "country": "X",
-        "logo": "/trt.jpg"
-    },
-    {
-        "title": "NDTV India",
-        "country": "IN",
-        "logo": "/ndtv.jpg"
+        "logo": "/rtv_music.jpg",
+        "priority" : 13
     },
     {
         "title": "News24 Daily",
         "country": "BD",
-        "logo": "/news24.jpg"
+        "logo": "/news24.jpg",
+        "priority" : 14
     },
     {
         "title": "Channel i News",
         "country": "BD",
-        "logo": "/channel_i.jpg"
+        "logo": "/channel_i.jpg",
+        "priority" : 15
     },
     {
         "title": "NTV Live",
         "country": "BD",
-        "logo": "/ntv.jpg"
+        "logo": "/ntv.jpg",
+        "priority" : 16
     },
     {
         "title": "BanglaVision LIVE",
         "country": "BD",
-        "logo": "/banglavision.jpg"
+        "logo": "/banglavision.jpg",
+        "priority" : 17
     },
     {
         "title": "Desh TV LIVE",
         "country": "BD",
-        "logo": "/deshtv.jpg"
+        "logo": "/deshtv.jpg",
+        "priority" : 18
+    },
+    {
+        "title": "Al Jazeera English",
+        "country": "X",
+        "logo": "/aljazeera.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "NASA",
+        "country": "X",
+        "logo": "/nasa.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "Zee News",
+        "country": "IN",
+        "logo": "/zee_news.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "TRT World",
+        "country": "X",
+        "logo": "/trt.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "NDTV India",
+        "country": "IN",
+        "logo": "/ndtv.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "Zee 24 Ghanta",
+        "country": "IN",
+        "logo": "/zee24hour.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "ABP ANANDA",
+        "country": "IN",
+        "logo": "/abp.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "TV9 Bangla",
+        "country": "IN",
+        "logo": "/tv9.jpg",
+        "priority" : 100
     }
 ]

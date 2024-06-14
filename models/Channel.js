@@ -7,11 +7,11 @@ const channelSchema = mongoose.Schema(
             require : true,
             trim : true
         },
-        URL : {
+        url : { //rename as 'url'
             type : String,
             require : true
         },
-        logo : {
+        channelLogo : { //rename as 'channelLogo'
             type : String
         },
         country : {

@@ -3,6 +3,6 @@ const router = express.Router();
 
 const channelController = require("../controllers/channelController");
 
-router.get("/getAll", channelController.getAllChannels);
+router.get("/", channelController.getAllChannels);
 
 module.exports = router;

@@ -7,7 +7,7 @@ const updateChannel = async(req) => {
         if(isExistChannel){
             //simply update it to database with higher priority
             let _channel = await Channel.findOne({ channelName: req.channelName });
-            req.priority = 1;
+            req.priority = req.priority;
             Object.assign(_channel, req);
             await _channel.save();
             return constants.EXISTING_CHANNEL_UPDATED;
@@ -54,10 +54,12 @@ const getAllChannels = async(req, res) => {
 
         _channels = sortChannels(_channels);
 
-        res.status(200).json({
-            message : `${_channels.length} channels found`,
-            channels : _channels
-        });
+        res.status(200).json([
+            {
+                message : `${_channels.length} channels found`,
+                videos : _channels
+            }
+        ]);
     }
     catch(error){
         console.log("error while fetching channels\n"+error);
@@ -69,16 +71,20 @@ const getAllChannels = async(req, res) => {
 
 const sortChannels = (channels) => {
     return channels.sort((a, b) => {
-        // Sort by country, prioritize "BD", if country same prioritize lastUpdate
-        if (a.country < b.country) {
-            return -1;
-        } 
-        else if (a.country > b.country) {
-            return 1;
-        }
-        else if (a.country === b.country) {
-            return b.lastUpdate - a.lastUpdate;
-        }
+        //first sort by country
+        if (a.country < b.country) return -1;
+        if (a.country > b.country) return 1;
+
+        // If countries are the same, compare by lastUpdate within 60000 milliseconds
+        const lastUpdateDiff = a.lastUpdate - b.lastUpdate;
+        if (lastUpdateDiff > 60000) return -1;
+        if (lastUpdateDiff < 0) return 1;
+        
+        // If last update difference same, compare by priority
+        if(a.priority < b.priority) return -1;
+        if(a.priority > b.priority) return 1;
+
+        // If lastUpdate difference is greater than 60000 milliseconds, maintain original order
         return 0;
     });
 };

@@ -1,6 +1,6 @@
 const axios = require("axios");
 const tvData = require("../channels.json");
-const api = require("../LoadBalancing/load_distributing");
+const api = require("../LoadBalancer/load_distribute");
 const moment = require('moment-timezone');
 const channelController = require("../controllers/channelController");
 const constants = require("../config/constants");
@@ -11,8 +11,6 @@ const manageChannels = async () => {
     let url = "";
 
     const hostname = "https://livetv-njf6.onrender.com";
-
-    //const hostname = "http://localhost:3000";
 
 
     if(api.getDistributedAPI() == "API1"){ url = process.env.API1; }
@@ -28,32 +26,22 @@ const manageChannels = async () => {
 
     let vdo = data[0].videos;
 
-    //console.log(vdo)
-
     for(let i=0; i<vdo.length; i++){
         let found = false;
         for(let j=0; j<tvData.length; j++){
             if(vdo[i].channelName.trim() == tvData[j].title.trim()){
                 vdo[i].channelLogo = tvData[j].logo.length? hostname+tvData[j].logo : "";
                 vdo[i].country = tvData[j].country;
+                vdo[i].priority = tvData[j].priority;
                 found = true;
                 break;
             }
         }
         if(!found){
-            vdo[i].country = "Z";
+            vdo[i].country = "Z"; //no country
+            vdo[i].priority = 101; //no priority
         }
     }
-
-    vdo.sort((a, b) => {
-        if (a.country < b.country) {
-            return -1;
-        } else if (a.country > b.country) {
-            return 1;
-        } else {
-            return 0;
-        }
-    });
 
     let deletedChannelCnt = 0, newChannelCnt = 0, updatedChannelCnt = 0;
 
@@ -63,15 +51,15 @@ const manageChannels = async () => {
         
         let _channel = await channelController.updateChannel({
             channelName : vdo[i].channelName,
-            URL : vdo[i].url,
-            logo : vdo[i].channelLogo,
+            url : vdo[i].url,
+            channelLogo : vdo[i].channelLogo,
             country: vdo[i].country,
             broker : api.getDistributedAPI(),
-            priority : 1,
+            priority : vdo[i].priority,
             lastUpdate : currentTime,
             lastUpdateTimeDate : getDhakaTime()
         });
-        //console.log(_channel);
+
         if(_channel == constants.NEW_CHANNEL_ADDED) newChannelCnt++;
         if(_channel == constants.EXISTING_CHANNEL_UPDATED) updatedChannelCnt++;
     }
