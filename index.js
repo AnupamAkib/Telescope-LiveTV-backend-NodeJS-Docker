@@ -1,6 +1,5 @@
 var cors = require('cors')
-require('dotenv').config()
-const axios = require('axios');
+require('dotenv').config();
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
@@ -18,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 
 
 app.get("/", function (req, res) {
-    res.send("<h1>Server Running (MVC)</h1>");
+    res.send("<h1>Live TV | Server Running</h1>");
 });
 
 app.get("/updateChannel", async function (req, res) { //to keep updating database
@@ -30,8 +29,8 @@ app.get("/updateChannel", async function (req, res) { //to keep updating databas
     });
 });
 
-const MONGO_CONNECTION_STRING = process.env.MONGODB_URL;
 
+const MONGO_CONNECTION_STRING = process.env.MONGODB_URL;
 
 mongoose
   .connect(MONGO_CONNECTION_STRING)
@@ -46,76 +45,12 @@ mongoose
   });
 
 
+
 const channelRoute = require("./routes/channelRoute");
+const userRoute = require("./routes/userRoute");
 
 app.use("/tv", channelRoute); //Channel Route
-
-
-
-
-
-
-
-//LEGACY CODE - UP & RUNNING!
-
-app.get("/legacy", async function (req, res) { // LEGACY CODEBASE FOR TEMPORARY SUPPORT
-  const tvData = require("./channels.json");
-  const api = require("./LoadBalancer/load_distribute");
-  let url = "";
-  const hostname = "https://livetv-njf6.onrender.com";
-
-  try {
-    if(api.getDistributedAPI() == "API1"){ url = process.env.API1; }
-    if(api.getDistributedAPI() == "API2"){ url = process.env.API2; }
-    if(api.getDistributedAPI() == "API3"){ url = process.env.API3; }
-    if(api.getDistributedAPI() == "API4"){ url = process.env.API4; }
-
-    console.log(api.getDistributedAPI());
-    console.log(url);
-
-    const response = await axios.get(url);
-    const data = response.data;
-
-    let vdo = data[0].videos;
-
-    //console.log(vdo)
-
-    for(let i=0; i<vdo.length; i++){
-        let found = false;
-        for(let j=0; j<tvData.length; j++){
-            if(vdo[i].channelName.trim() == tvData[j].title.trim()){
-                vdo[i].channelLogo = tvData[j].logo.length? hostname+tvData[j].logo : "";
-                vdo[i].country = tvData[j].country;
-                found = true;
-                break;
-            }
-        }
-        if(!found){
-            vdo[i].country = "Z";
-        }
-    }
-
-    vdo.sort((a, b) => {
-        if (a.country < b.country) {
-          return -1;
-        } else if (a.country > b.country) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-      
-    data[0].videos = vdo;
-
-    res.status(200).json(data);
-  } catch (error) {
-      console.error('Error searching YouTube:', error);
-      res.status(500).json({ error: 'An error occurred while fetching live videos.' });
-  }
-
-});
-
-
+app.use("/user", userRoute); //User Route
 
 
 
@@ -123,4 +58,3 @@ app.get("/legacy", async function (req, res) { // LEGACY CODEBASE FOR TEMPORARY 
 app.get('*', function(req, res){
     res.status(404).send("<h1>404 Not Found!</h1>");
 });
-

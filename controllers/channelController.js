@@ -1,11 +1,10 @@
-const Channel = require("../models/Channel");
+const Channel = require("../models/channelModel");
 const constants = require("../config/constants");
 
 const updateChannel = async(req) => {
     try{
         let isExistChannel = await Channel.findOne({channelName : req.channelName});
         if(isExistChannel){
-            //simply update it to database with higher priority
             let _channel = await Channel.findOne({ channelName: req.channelName });
             req.priority = req.priority;
             Object.assign(_channel, req);
@@ -51,12 +50,17 @@ const getAllChannels = async(req, res) => {
         let _channels = await Channel.find({});
         console.log(`${_channels.length} channels fetched`);
 
-
         _channels = sortChannels(_channels);
 
         res.status(200).json([
             {
                 message : `${_channels.length} channels found`,
+                user : {
+                    "fullName" : req.fullName,
+                    "username" : req.username,
+                    "emailAddress" : req.emailAddress,
+                    "userID" : req.id
+                },
                 videos : _channels
             }
         ]);
@@ -88,7 +92,7 @@ const sortChannels = (channels) => {
         return 0;
     });
 };
-  
+
 
 module.exports = {
     updateChannel,
