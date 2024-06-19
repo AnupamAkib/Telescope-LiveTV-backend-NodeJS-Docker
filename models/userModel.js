@@ -84,6 +84,9 @@ const userSchema = mongoose.Schema(
                     message: props => `Invalid email address.`
                 }
             ]
+        },
+        isEmailVerified : {
+            type : Boolean
         }
     },
     {

@@ -5,12 +5,12 @@ const constants = require("../config/constants");
 
 const registerNewUser = async(req, res) => {
     try{
+        req.body.isEmailVerified = false;
         const _user = await User.create(req.body);
         const token = jwt.sign({
             fullName : _user.fullName,
             username : _user.username,
-            emailAddress : _user.emailAddress,
-            id : _user._id
+            emailAddress : _user.emailAddress
         }, process.env.JWT_SECRET_KEY, {
             expiresIn : constants.JWT_EXPIRES_AFTER
         });
@@ -51,8 +51,7 @@ const login = async(req, res) => {
             const token = jwt.sign({
                 fullName : existingUser.fullName,
                 username : existingUser.username,
-                emailAddress : existingUser.emailAddress,
-                id : existingUser._id
+                emailAddress : existingUser.emailAddress
             }, process.env.JWT_SECRET_KEY, {
                 expiresIn : constants.JWT_EXPIRES_AFTER
             });
@@ -75,7 +74,39 @@ const login = async(req, res) => {
     }
 }
 
+const verifyEmailAddress = async (req, res) => {
+    try{
+        const userId = req.query.id;
+        let _user = await User.findById(userId);
+
+        if(!_user.isEmailVerified){
+            await User.updateOne(
+                { _id: userId },
+                { $set: { isEmailVerified: true } }
+            );
+
+            res.status(200).json({
+                message : "success",
+                user : _user.username
+            });
+        }
+        else{
+            res.status(200).json({
+                message : "Email already verified",
+                user : _user.username
+            });
+        }
+    }
+    catch(error){
+        console.log(error);
+        res.status(500).json({
+            message : "Sorry, something went wrong!"
+        });
+    }
+}
+
 module.exports = {
     registerNewUser,
-    login
+    login,
+    verifyEmailAddress
 }

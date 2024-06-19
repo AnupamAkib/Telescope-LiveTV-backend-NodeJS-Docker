@@ -1,22 +1,30 @@
 const jwt = require("jsonwebtoken");
+const User = require("../models/userModel");
 
-const authGuard = (req, res, next) => {
+const authGuard = async (req, res, next) => {
     const {authorization} = req.headers;
     try{
         const token = authorization.split(' ')[1]; //reduce the Bearer part, get only token
         const decodedPayload = jwt.verify(token, process.env.JWT_SECRET_KEY);
         const {username, fullName, emailAddress, id} = decodedPayload;
-        req.username = username;
-        req.fullName = fullName;
-        req.emailAddress = emailAddress;
-        req.id = id;
+
+        const _user = await User.findOne({username : username});
+
+        if(_user){
+            req.username = username;
+            req.fullName = fullName;
+            req.emailAddress = emailAddress;
+            req.isEmailVerified = _user.isEmailVerified;
+            req.isAuthenticated = true;
+        }
+        else{
+            req.isAuthenticated = false;
+        }
         next();
     }
     catch(error){
-        res.status(401).json({
-            message : "Authentication failed! Please login"
-        });
-        next("Authentication failed!");
+        req.isAuthenticated = false;
+        next();
     }
 }
 

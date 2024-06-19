@@ -1,4 +1,5 @@
 const Channel = require("../models/channelModel");
+const User = require("../models/userModel");
 const constants = require("../config/constants");
 
 const updateChannel = async(req) => {
@@ -46,30 +47,57 @@ const filterBackdatedChannels = async() => {
 }
 
 const getAllChannels = async(req, res) => {
-    try{
-        let _channels = await Channel.find({});
-        console.log(`${_channels.length} channels fetched`);
+    let _channels = await Channel.find({});
+    _channels = sortChannels(_channels);
 
-        _channels = sortChannels(_channels);
-
-        res.status(200).json([
-            {
-                message : `${_channels.length} channels found`,
-                user : {
-                    "fullName" : req.fullName,
-                    "username" : req.username,
-                    "emailAddress" : req.emailAddress,
-                    "userID" : req.id
-                },
-                videos : _channels
-            }
-        ]);
+    if(req.isAuthenticated){
+        if(req.isEmailVerified){
+            res.status(200).json([
+                {
+                    message : "success",
+                    channelCount : _channels.length,
+                    user : {
+                        "fullName" : req.fullName,
+                        "username" : req.username,
+                        "emailAddress" : req.emailAddress,
+                        "isEmailVerified" : req.isEmailVerified
+                    },
+                    videos : _channels
+                }
+            ]);
+        }
+        else{
+            res.status(200).json([
+                {
+                    message : "Please verify your email address to access all the channels",
+                    channelCount : _channels.length,
+                    user : {
+                        "fullName" : req.fullName,
+                        "username" : req.username,
+                        "emailAddress" : req.emailAddress,
+                        "isEmailVerified" : req.isEmailVerified
+                    },
+                    videos : [_channels[0], _channels[1]]
+                }
+            ]);
+        }
     }
-    catch(error){
-        console.log("error while fetching channels\n"+error);
-        res.status(400).json({
-            message : "Error fetching channels"
-        });
+    else{
+        try{
+            res.status(400).json([
+                {
+                    message : "Please login or signup to access all the channels",
+                    channelCount : _channels.length,
+                    user : "NO USER",
+                    videos : [_channels[0], _channels[1]]
+                }
+            ]);
+        }
+        catch(error){
+            res.status(500).json({
+                message : "something went wrong!"
+            });
+        }
     }
 }
 
