@@ -14,6 +14,9 @@ const registerNewUser = async(req, res) => {
         }, process.env.JWT_SECRET_KEY, {
             expiresIn : constants.JWT_EXPIRES_AFTER
         });
+
+        sendEmailForVerification(_user);
+
         res.status(200).json({
             message : "success", 
             accessToken : token, 
@@ -37,6 +40,32 @@ const registerNewUser = async(req, res) => {
     }
 }
 
+
+const sendEmailForVerification = (_user) => {
+    const mail = require("../EmailServices/sendMail");
+
+    const _msg = `
+    <div style="padding:15px; background:#f0f0f0; font-size:19px;">
+    <h1 align='center'>Telescope</h1><hr/>
+    Hello <b>${_user.fullName}</b>, <br/>Welcome to Telescope Live TV app. 
+    Your registration is completed successfully. Now, you need to verify your email address to access all the channels. 
+    Please click the below link to confirm your email address.
+    <br/><br/>
+    <a href="#">https://telescope-live.netlify.app/user/verifyEmail?id=${_user._id}</a>
+    <br/><br/>
+    Thanks for using Telescope Live TV. Wishing a great experience!<br/><br/>
+    Thanks & Regards,<br/>
+    <b>Telescope Engineering Team<b>
+    </div><br/>
+    <i>[This is a system generated email. You don't need to reply to this email]</i>
+    `;
+
+    mail.sendmail({
+        _to : _user.emailAddress,
+        _subject : "Please verify your email address",
+        _msgBody : _msg
+    });
+}
 
 const login = async(req, res) => {
     try{
