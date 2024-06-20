@@ -154,5 +154,29 @@
         "country": "IN",
         "logo": "/tv9.jpg",
         "priority" : 100
+    },
+    {
+        "title": "CNA",
+        "country": "IN",
+        "logo": "/cna.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "News18 Bangla",
+        "country": "IN",
+        "logo": "/news18bangla.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "NTV Telugu",
+        "country": "IN",
+        "logo": "/ntv_telegu.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "Republic Bangla",
+        "country": "IN",
+        "logo": "/r_bangla.jpg",
+        "priority" : 100
     }
 ]

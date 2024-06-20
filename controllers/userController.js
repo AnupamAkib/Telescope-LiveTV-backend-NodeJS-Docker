@@ -42,16 +42,18 @@ const registerNewUser = async(req, res) => {
 
 
 const sendEmailForVerification = (_user) => {
-    const mail = require("../EmailServices/sendMail");
+    const mail = require("../services/emailService");
 
     const _msg = `
     <div style="padding:15px; background:#f0f0f0; font-size:19px;">
-    <h1 align='center'>Telescope</h1><hr/>
+    <center><img src="https://livetv-njf6.onrender.com/logo/logo-color.jpg" width="230px"/></center><br/><br/>
     Hello <b>${_user.fullName}</b>, <br/>Welcome to Telescope Live TV app. 
     Your registration is completed successfully. Now, you need to verify your email address to access all the channels. 
     Please click the below link to confirm your email address.
     <br/><br/>
-    <a href="#">https://telescope-live.netlify.app/user/verifyEmail?id=${_user._id}</a>
+    <a href="https://telescope-live.netlify.app/user/verifyEmail?id=${_user._id}">
+    https://telescope-live.netlify.app/user/verifyEmail?id=${_user._id}
+    </a>
     <br/><br/>
     Thanks for using Telescope Live TV. Wishing a great experience!<br/><br/>
     Thanks & Regards,<br/>
@@ -134,8 +136,24 @@ const verifyEmailAddress = async (req, res) => {
     }
 }
 
+const verifyToken = (req, res) => {
+    if(req.isAuthenticated){
+        res.status(200).json({
+            message : "success",
+            username : req.username,
+            fullName : req.fullName
+        })
+    }
+    else{
+        res.status(401).json({
+            message : "invalid token"
+        })
+    }
+}
+
 module.exports = {
     registerNewUser,
     login,
-    verifyEmailAddress
+    verifyEmailAddress,
+    verifyToken
 }
