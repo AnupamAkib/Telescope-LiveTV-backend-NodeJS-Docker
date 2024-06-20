@@ -46,13 +46,13 @@ const sendEmailForVerification = (_user) => {
 
     const _msg = `
     <div style="padding:15px; background:#f0f0f0; font-size:19px;">
-    <center><img src="https://livetv-njf6.onrender.com/logo/logo-color.jpg" width="230px"/></center><br/><br/>
+    <center><img src="https://livetv-njf6.onrender.com/logo/logo-color.jpg" width="250px"/></center><br/>
     Hello <b>${_user.fullName}</b>, <br/>Welcome to Telescope Live TV app. 
     Your registration is completed successfully. Now, you need to verify your email address to access all the channels. 
     Please click the below link to confirm your email address.
     <br/><br/>
     <a href="https://telescope-live.netlify.app/verifyEmail/${_user._id}">
-    https://telescope-live.netlify.app/user/verifyEmail?id=${_user._id}
+    https://telescope-live.netlify.app/verifyEmail/${_user._id}
     </a>
     <br/><br/>
     Thanks for using Telescope Live TV. Wishing a great experience!<br/><br/>
