@@ -51,7 +51,7 @@ const sendEmailForVerification = (_user) => {
     Your registration is completed successfully. Now, you need to verify your email address to access all the channels. 
     Please click the below link to confirm your email address.
     <br/><br/>
-    <a href="https://telescope-live.netlify.app/user/verifyEmail?id=${_user._id}">
+    <a href="https://telescope-live.netlify.app/verifyEmail/${_user._id}">
     https://telescope-live.netlify.app/user/verifyEmail?id=${_user._id}
     </a>
     <br/><br/>
