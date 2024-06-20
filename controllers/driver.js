@@ -1,6 +1,6 @@
 const axios = require("axios");
 const tvData = require("../channels.json");
-const api = require("../loadBalancer/loadDistribute");
+const api = require("../load_balancer/loadDistribute");
 const moment = require('moment-timezone');
 const channelController = require("../controllers/channelController");
 const constants = require("../config/constants");
