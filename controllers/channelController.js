@@ -84,7 +84,7 @@ const getAllChannels = async(req, res) => {
     }
     else{
         try{
-            res.status(400).json([
+            res.status(200).json([
                 {
                     message : "Please login or signup to access all the channels",
                     channelCount : _channels.length,
