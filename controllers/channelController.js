@@ -52,7 +52,7 @@ const getAllChannels = async(req, res) => {
 
     if(req.isAuthenticated){
         if(req.isEmailVerified){
-            res.status(200).json([
+            return res.status(200).json([
                 {
                     message : "success",
                     channelCount : _channels.length,
@@ -67,7 +67,8 @@ const getAllChannels = async(req, res) => {
             ]);
         }
         else{
-            res.status(200).json([
+            const CHANNEL_COUNT_NO_USER = constants.CHANNEL_COUNT_NO_USER;
+            return res.status(200).json([
                 {
                     message : "Please verify your email address to access all the channels",
                     channelCount : _channels.length,
@@ -77,27 +78,60 @@ const getAllChannels = async(req, res) => {
                         "emailAddress" : req.emailAddress,
                         "isEmailVerified" : req.isEmailVerified
                     },
-                    videos : [_channels[0], _channels[1]]
+                    videos : _channels.slice(0, CHANNEL_COUNT_NO_USER)
                 }
             ]);
         }
     }
     else{
         try{
-            res.status(200).json([
+            const CHANNEL_COUNT_NO_USER = constants.CHANNEL_COUNT_NO_USER;
+            return res.status(200).json([
                 {
                     message : "Please login or signup to access all the channels",
                     channelCount : _channels.length,
                     user : "NO USER",
-                    videos : [_channels[0], _channels[1]]
+                    videos : _channels.slice(0, CHANNEL_COUNT_NO_USER)
                 }
             ]);
         }
         catch(error){
-            res.status(500).json({
+            return res.status(500).json({
                 message : "something went wrong!"
             });
         }
+    }
+}
+
+
+const checkChannelAvailableToUser = async (req, res) => {
+    try{
+        const CHANNEL_COUNT_NO_USER = constants.CHANNEL_COUNT_NO_USER;
+        const channelNameToCheck = req.body.channelName;
+        
+        if(req.isAuthenticated && req.isEmailVerified){
+            return res.status(200).json({
+                message : "success"
+            });
+        }
+        const channels = await Channel.find().limit(CHANNEL_COUNT_NO_USER).exec();
+        const channelExists = channels.some(channel => channel.channelName === channelNameToCheck);
+        
+        if(channelExists){
+            return res.status(200).json({
+                message : "success"
+            });
+        }
+        else{
+            return res.status(401).json({
+                message : "Failed to load channel"
+            });
+        }
+    }
+    catch(error){
+        return res.status(400).json({
+            message : "failed"
+        });
     }
 }
 
@@ -125,5 +159,6 @@ const sortChannels = (channels) => {
 module.exports = {
     updateChannel,
     getAllChannels,
-    filterBackdatedChannels
+    filterBackdatedChannels,
+    checkChannelAvailableToUser
 }

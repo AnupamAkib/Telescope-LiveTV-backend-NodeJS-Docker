@@ -17,7 +17,7 @@ const registerNewUser = async(req, res) => {
 
         sendEmailForVerification(_user);
 
-        res.status(200).json({
+        return res.status(200).json({
             message : "success", 
             accessToken : token, 
             user : _user
@@ -33,7 +33,7 @@ const registerNewUser = async(req, res) => {
         else {
             // Handle other errors
             console.error(error);
-            res.status(500).send({
+            return res.status(500).send({
                 message : "Internal Server Error"
             });
         }
@@ -86,20 +86,20 @@ const login = async(req, res) => {
             }, process.env.JWT_SECRET_KEY, {
                 expiresIn : constants.JWT_EXPIRES_AFTER
             });
-            res.status(200).json({
+            return res.status(200).json({
                 message : "success", 
                 accessToken : token, 
                 user : existingUser
             });
         }
         else{
-            res.status(400).json({
+            return res.status(400).json({
                 message : "Login failed! Enter valid credential"
             });
         }
     }
     catch(error){
-        res.status(400).json({
+        return res.status(400).json({
             message : "Sorry, something went wrong!"
         });
     }
@@ -116,13 +116,13 @@ const verifyEmailAddress = async (req, res) => {
                 { $set: { isEmailVerified: true } }
             );
 
-            res.status(200).json({
+            return res.status(200).json({
                 message : "success",
                 user : _user.username
             });
         }
         else{
-            res.status(200).json({
+            return res.status(200).json({
                 message : "Email already verified",
                 user : _user.username
             });
@@ -130,7 +130,7 @@ const verifyEmailAddress = async (req, res) => {
     }
     catch(error){
         console.log(error);
-        res.status(500).json({
+        return res.status(500).json({
             message : "Sorry, something went wrong!"
         });
     }
@@ -138,16 +138,16 @@ const verifyEmailAddress = async (req, res) => {
 
 const verifyToken = (req, res) => {
     if(req.isAuthenticated){
-        res.status(200).json({
+        return res.status(200).json({
             message : "success",
             username : req.username,
             fullName : req.fullName
-        })
+        });
     }
     else{
-        res.status(401).json({
+        return res.status(401).json({
             message : "invalid token"
-        })
+        });
     }
 }
 

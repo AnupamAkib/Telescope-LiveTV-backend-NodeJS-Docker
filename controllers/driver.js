@@ -6,7 +6,7 @@ const channelController = require("../controllers/channelController");
 const constants = require("../config/constants");
 
 const manageChannels = async () => {
-    console.log("driver");
+    console.log("driver running");
 
     let url = "";
 
@@ -18,8 +18,8 @@ const manageChannels = async () => {
     if(api.getDistributedAPI() == "API3"){ url = process.env.API3; }
     if(api.getDistributedAPI() == "API4"){ url = process.env.API4; }
 
-    console.log(api.getDistributedAPI());
-    console.log(url);
+    //console.log(api.getDistributedAPI());
+    //console.log(url);
 
     const response = await axios.get(url);
     const data = response.data;

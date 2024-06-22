@@ -4,5 +4,7 @@ module.exports = {
     NEW_CHANNEL_ADDED : 1,
     EXISTING_CHANNEL_UPDATED : 2,
 
-    JWT_EXPIRES_AFTER : "10h"
+    CHANNEL_COUNT_NO_USER : 10,
+
+    JWT_EXPIRES_AFTER : "30d"
 };
