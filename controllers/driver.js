@@ -18,8 +18,6 @@ const manageChannels = async () => {
     if(api.getDistributedAPI() == "API3"){ url = process.env.API3; }
     if(api.getDistributedAPI() == "API4"){ url = process.env.API4; }
 
-    //console.log(api.getDistributedAPI());
-    //console.log(url);
 
     const response = await axios.get(url);
     const data = response.data;

@@ -94,7 +94,7 @@ const login = async(req, res) => {
         }
         else{
             return res.status(400).json({
-                message : "Login failed! Enter valid credential"
+                message : "Login failed! Wrong username or password"
             });
         }
     }

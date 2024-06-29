@@ -32,7 +32,8 @@ const filterBackdatedChannels = async() => {
     let cnt = 0;
     try{
         for (let channel of _channels) {
-            if (currentTime - channel.lastUpdate > constants.CHANNEL_FILTER_TIME) { //delete channels that fetched before last 24 hours [86400000 milliseconds = 24 hours]
+            //delete channels that fetched before last 24 hours [86400000 milliseconds = 24 hours]
+            if (currentTime - channel.lastUpdate > constants.CHANNEL_FILTER_TIME) {
                 await Channel.deleteOne({ channelName: channel.channelName });
                 console.log(`Deleted channel: ${channel.channelName}`);
                 cnt++;
@@ -47,6 +48,8 @@ const filterBackdatedChannels = async() => {
 }
 
 const getAllChannels = async(req, res) => {
+    console.log("requested for channels!");
+
     let _channels = await Channel.find({});
     _channels = sortChannels(_channels);
 
@@ -124,7 +127,7 @@ const checkChannelAvailableToUser = async (req, res) => {
         }
         else{
             return res.status(401).json({
-                message : "Failed to load channel"
+                message : "Failed to load channel. Please login/verify account"
             });
         }
     }
