@@ -48,9 +48,11 @@ mongoose
 
 const channelRoute = require("./routes/channelRoute");
 const userRoute = require("./routes/userRoute");
+const activityRoute = require("./routes/activityRoute");
 
 app.use("/tv", channelRoute); //Channel Route
 app.use("/user", userRoute); //User Route
+app.use("/activity", activityRoute); //Activity Route
 
 
 

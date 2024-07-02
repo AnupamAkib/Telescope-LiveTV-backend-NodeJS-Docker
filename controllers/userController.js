@@ -2,6 +2,7 @@ const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 const md5 = require("md5");
 const constants = require("../config/constants");
+const activityController = require("../controllers/activityController");
 
 const registerNewUser = async(req, res) => {
     try{
@@ -16,6 +17,12 @@ const registerNewUser = async(req, res) => {
         });
 
         sendEmailForVerification(_user);
+
+        activityController.setActivity({
+            username : _user.username,
+            fullName : _user.fullName,
+            activity : "created a new account"
+        });
 
         return res.status(200).json({
             message : "success", 
@@ -86,6 +93,13 @@ const login = async(req, res) => {
             }, process.env.JWT_SECRET_KEY, {
                 expiresIn : constants.JWT_EXPIRES_AFTER
             });
+
+            activityController.setActivity({
+                username : existingUser.username,
+                fullName : existingUser.fullName,
+                activity : "logged in to the system"
+            });
+
             return res.status(200).json({
                 message : "success", 
                 accessToken : token, 
@@ -115,6 +129,12 @@ const verifyEmailAddress = async (req, res) => {
                 { _id: userId },
                 { $set: { isEmailVerified: true } }
             );
+
+            activityController.setActivity({
+                username : _user.username,
+                fullName : _user.fullName,
+                activity : "verified the account"
+            });
 
             return res.status(200).json({
                 message : "success",

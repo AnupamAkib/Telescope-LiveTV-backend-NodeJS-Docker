@@ -1,6 +1,7 @@
 const Channel = require("../models/channelModel");
 const User = require("../models/userModel");
 const constants = require("../config/constants");
+const activityController = require("./activityController");
 
 const updateChannel = async(req) => {
     try{
@@ -112,6 +113,21 @@ const checkChannelAvailableToUser = async (req, res) => {
         const CHANNEL_COUNT_NO_USER = constants.CHANNEL_COUNT_NO_USER;
         const channelNameToCheck = req.body.channelName;
         
+        if(req.isAuthenticated){
+            activityController.setActivity({
+                username : req.username,
+                fullName : req.fullName,
+                activity : `watched '${channelNameToCheck}'`
+            });
+        }
+        else{
+            activityController.setActivity({
+                username : "User",
+                fullName : "Unknown Person",
+                activity : `watched '${channelNameToCheck}'`
+            });
+        }
+
         if(req.isAuthenticated && req.isEmailVerified){
             return res.status(200).json({
                 message : "success"
