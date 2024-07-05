@@ -1,4 +1,5 @@
 const Activity = require("../models/activityModel");
+const User = require("../models/userModel");
 
 const setActivity = async(req) => {
     const username = req.username;
@@ -10,22 +11,37 @@ const setActivity = async(req) => {
 
 const getActivity = async(req, res) => {
     const user = req.query.username;
+    if(req.username != "anupam"){
+        return res.status(401).json({
+            message : "failed"
+        });
+    }
+
+    const allUsers = await User.find({});
+    const allUsernames = allUsers.map(user => user.username);
+
     if(user == "ALL" || !user || user == null){
-        const activities = await Activity.find({});
+        let activities = await Activity.find({});
         activities.reverse();
+        activities = activities.slice(0, 100);
+
         return res.status(200).json({
             message : "success",
             user : "ALL",
-            activities : activities
+            allUser : allUsernames,
+            topActivities : activities
         });
     }
     else{
-        const activities = await Activity.find({username : user});
+        let activities = await Activity.find({username : user});
         activities.reverse();
+        activities = activities.slice(0, 100);
+        
         return res.status(200).json({
             message : "success",
             user : user,
-            activities : activities
+            allUser : allUsernames,
+            topActivities : activities
         });
     }
 }
