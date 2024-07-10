@@ -285,3 +285,20 @@ headers = {
     ]
 }
 ```
+
+
+
+
+
+
+## 🛠 Skills
+Node.js, Express.js, MongoDB, Javascript, JWT Authentication, MVC Architecture, Docker, Web Scraping
+
+## 🔗 Links
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://anupam-akib.netlify.app/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anupamakib/)
+
+
+## Authors
+
+- [@AnupamAkib](https://github.com/AnupamAkib/)
