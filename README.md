@@ -27,7 +27,7 @@ Using this route, user can create their new account to the system. After registe
 }
 ```
 
-#### Sample response:
+#### Sample expected response:
 ```json
 {
     "message": "success",
@@ -68,7 +68,7 @@ This route is used for entering to the system by login
     "password" : "aha@12354"
 }
 ```
-#### Sample response:
+#### Sample expected response:
 ```json
 {
     "message": "success",
@@ -102,7 +102,7 @@ This endpoint will be opened from user email inbox. The link will send to user e
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
 | `id`      | `string` | **Required**. User MongoDB ID |
-#### Sample response:
+#### Sample expected response:
 ```json
 {
     "message": "success"
@@ -124,7 +124,7 @@ headers = {
     "Content-Type": "application/json"
 }
 ```
-#### Sample response:
+#### Sample expected response:
 ```json
 {
     "message": "success",
@@ -147,7 +147,7 @@ headers = {
     "Content-Type": "application/json"
 }
 ```
-#### Sample response:
+#### Sample expected response:
 ```js
 [
     {
@@ -214,7 +214,7 @@ headers = {
     "channelName" : "SOMOY TV"
 }
 ```
-#### Sample response:
+#### Sample expected response:
 ```json
 {
     "message": "success"
@@ -228,7 +228,7 @@ This route is responsible for updating channels. An online scheduler hits this e
 ```http
   GET /updateChannel
 ```
-#### Sample response:
+#### Sample expected response:
 ```json
 {
     "message": "success",
@@ -255,7 +255,7 @@ headers = {
     "Content-Type": "application/json"
 }
 ```
-#### Sample response:
+#### Sample expected response:
 ```js
 {
     "message": "success",
