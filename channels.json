@@ -73,12 +73,18 @@
     },
     {
         "title": "Rtv Music",
-        "country": "BD",
+        "country": "X",
         "logo": "/rtv_music.jpg",
         "priority" : 13
     },
     {
         "title": "News24 Daily",
+        "country": "BD",
+        "logo": "/news24.jpg",
+        "priority" : 14
+    },
+    {
+        "title": "NEWS24 Television",
         "country": "BD",
         "logo": "/news24.jpg",
         "priority" : 14
@@ -109,7 +115,7 @@
     },
     {
         "title": "Al Jazeera English",
-        "country": "X",
+        "country": "Global",
         "logo": "/aljazeera.jpg",
         "priority" : 100
     },
@@ -127,12 +133,18 @@
     },
     {
         "title": "TRT World",
-        "country": "X",
+        "country": "Global",
         "logo": "/trt.jpg",
         "priority" : 100
     },
     {
         "title": "NDTV India",
+        "country": "IN",
+        "logo": "/ndtv.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "NDTV",
         "country": "IN",
         "logo": "/ndtv.jpg",
         "priority" : 100
@@ -157,7 +169,7 @@
     },
     {
         "title": "CNA",
-        "country": "IN",
+        "country": "Global",
         "logo": "/cna.jpg",
         "priority" : 100
     },
@@ -177,6 +189,18 @@
         "title": "Republic Bangla",
         "country": "IN",
         "logo": "/r_bangla.jpg",
+        "priority" : 100
+    },
+    {
+        "title": "Kolkata Tv",
+        "country": "IN",
+        "logo": "/kolkata_tv.png",
+        "priority" : 100
+    },
+    {
+        "title": "DW News",
+        "country": "Global",
+        "logo": "/dw.jpg",
         "priority" : 100
     }
 ]
