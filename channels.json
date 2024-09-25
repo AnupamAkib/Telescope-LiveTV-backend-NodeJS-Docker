@@ -120,6 +120,12 @@
         "priority" : 100
     },
     {
+        "title": "DW News",
+        "country": "GG",
+        "logo": "/dw.jpg",
+        "priority" : 99
+    },
+    {
         "title": "NASA",
         "country": "X",
         "logo": "/nasa.jpg",
@@ -195,12 +201,6 @@
         "title": "Kolkata Tv",
         "country": "IN",
         "logo": "/kolkata_tv.png",
-        "priority" : 100
-    },
-    {
-        "title": "DW News",
-        "country": "GG",
-        "logo": "/dw.jpg",
         "priority" : 100
     }
 ]
