@@ -115,7 +115,7 @@
     },
     {
         "title": "Al Jazeera English",
-        "country": "Global",
+        "country": "GG",
         "logo": "/aljazeera.jpg",
         "priority" : 100
     },
@@ -133,7 +133,7 @@
     },
     {
         "title": "TRT World",
-        "country": "Global",
+        "country": "GG",
         "logo": "/trt.jpg",
         "priority" : 100
     },
@@ -169,7 +169,7 @@
     },
     {
         "title": "CNA",
-        "country": "Global",
+        "country": "GG",
         "logo": "/cna.jpg",
         "priority" : 100
     },
@@ -199,7 +199,7 @@
     },
     {
         "title": "DW News",
-        "country": "Global",
+        "country": "GG",
         "logo": "/dw.jpg",
         "priority" : 100
     }
