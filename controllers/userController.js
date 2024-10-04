@@ -6,7 +6,8 @@ const activityController = require("../controllers/activityController");
 
 const registerNewUser = async(req, res) => {
     try{
-        req.body.isEmailVerified = false;
+        //req.body.isEmailVerified = false;
+        req.body.isEmailVerified = true; //OTP sending disabled
         const _user = await User.create(req.body);
         const token = jwt.sign({
             fullName : _user.fullName,
@@ -16,7 +17,7 @@ const registerNewUser = async(req, res) => {
             expiresIn : constants.JWT_EXPIRES_AFTER
         });
 
-        sendEmailForVerification(_user);
+        //sendEmailForVerification(_user); //No OTP sending while creating new user
 
         activityController.setActivity({
             username : _user.username,
