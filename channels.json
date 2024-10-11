@@ -12,6 +12,12 @@
         "priority" : 2
     },
     {
+        "title": "SOMOY TV Bulletin",
+        "country": "BD",
+        "logo": "/somoy.jpg",
+        "priority" : 2
+    },
+    {
         "title": "Independent Television",
         "country": "BD",
         "logo": "/independent.jpg",
