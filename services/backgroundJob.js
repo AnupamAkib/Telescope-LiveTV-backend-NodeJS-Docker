@@ -3,8 +3,8 @@ const axios = require("axios");
 
 const END_POINT = "https://livetv-njf6.onrender.com/updateChannel";
 
-// Cron job to run every 9 minutes
-cron.schedule("*/9 * * * *", async () => {
+// Cron job to run every 3 minutes
+cron.schedule("*/3 * * * *", async () => {
   try {
     console.log("Running scheduled task...");
 
