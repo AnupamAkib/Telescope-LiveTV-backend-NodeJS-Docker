@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 app.use(multer.array()); //for parsing multiple/form-data
 app.use(express.static('assets'));
 
+require("./services/backgroundJob");
+
 const PORT = process.env.PORT || 3000;
 
 
