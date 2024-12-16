@@ -1,10 +1,10 @@
 const cron = require("node-cron");
 const axios = require("axios");
 
-const END_POINT = "https://livetv-njf6.onrender.com/updateChannel";
+const END_POINT = "https://telescope-5uyq.onrender.com/updateChannel";
 
-// Cron job to run every 3 minutes
-cron.schedule("*/3 * * * *", async () => {
+// Cron job to run every 12 minutes
+cron.schedule("*/12 * * * *", async () => {
   try {
     console.log("Running scheduled task...");
 
