@@ -10,7 +10,7 @@ const manageChannels = async () => {
 
     let url = "";
 
-    const hostname = "https://livetv-njf6.onrender.com";
+    const hostname = process.env.BASE_URL || "http://localhost:3000";
 
 
     if(api.getDistributedAPI() == "API1"){ url = process.env.API1; }

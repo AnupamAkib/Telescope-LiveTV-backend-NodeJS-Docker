@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 3000;
 
 
 app.get("/", function (req, res) {
-    res.send("<h1>Live TV | Server Running</h1>");
+    res.send("<table cellspacing='50'><tr><td><img src='/logo/bd-flag.gif' width='120px'/></td><td><img src='logo/logo-color.jpg' width='250px'/><h1>Telescope Live TV - Server</h1><b>Status: </b><font color='green'>UP & RUNNING</font><br/><b>Manager: </b>MIR ANUPAM HOSSAIN AKIB (+8801304160705)</td></tr></table>");
 });
 
 app.get("/updateChannel", async function (req, res) { //to keep updating database

@@ -1,7 +1,7 @@
 const cron = require("node-cron");
 const axios = require("axios");
 
-const END_POINT = "https://telescope-5uyq.onrender.com/updateChannel";
+const END_POINT = `${process.env.BASE_URL}/updateChannel`;
 
 // Cron job to run every 12 minutes
 cron.schedule("*/12 * * * *", async () => {
