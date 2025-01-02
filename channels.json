@@ -120,6 +120,36 @@
         "priority" : 18
     },
     {
+        "title": "Desh TV News",
+        "country": "BD",
+        "logo": "/deshtv.jpg",
+        "priority" : 18
+    },
+    {
+        "title": "T Sports",
+        "country": "BD",
+        "logo": "/tsports.png",
+        "priority" : 19
+    },
+    {
+        "title": "Rabbitholebd Sports",
+        "country": "BD",
+        "logo": "/rabbithole.png",
+        "priority" : 20
+    },
+    {
+        "title": "Madani Channel Bangla Live",
+        "country": "C",
+        "logo": "/madani.png",
+        "priority" : 21
+    },
+    {
+        "title": "mtaOnline1",
+        "country": "C",
+        "logo": "/mta.png",
+        "priority" : 22
+    },
+    {
         "title": "Al Jazeera English",
         "country": "GG",
         "logo": "/aljazeera.jpg",
@@ -207,6 +237,18 @@
         "title": "Kolkata Tv",
         "country": "IN",
         "logo": "/kolkata_tv.png",
+        "priority" : 100
+    },
+    {
+        "title": "Aaj Tak",
+        "country": "IN",
+        "logo": "/aajtaak.png",
+        "priority" : 100
+    },
+    {
+        "title": "Calcutta News",
+        "country": "IN",
+        "logo": "/calcutta-news.jpg",
         "priority" : 100
     }
 ]
