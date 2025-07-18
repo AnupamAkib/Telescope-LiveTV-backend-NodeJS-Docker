@@ -41,7 +41,7 @@ const manageChannels = async () => {
             let found = false;
             for(let j=0; j<tvData.length; j++){
                 if(vdo[i].channelName.trim() == tvData[j].title.trim()){
-                    vdo[i].channelLogo = tvData[j].logo.length? hostname+tvData[j].logo : "";
+                    vdo[i].channelLogo = tvData[j].logo.length? hostname+tvData[j].logo : hostname+"/assets/logo/icon-new.png";
                     vdo[i].country = tvData[j].country;
                     vdo[i].priority = tvData[j].priority;
                     found = true;

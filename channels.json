@@ -96,7 +96,19 @@
         "priority" : 14
     },
     {
+        "title": "NEWS24 LIVE",
+        "country": "BD",
+        "logo": "/news24.jpg",
+        "priority" : 14
+    },
+    {
         "title": "Channel i News",
+        "country": "BD",
+        "logo": "/channel_i.jpg",
+        "priority" : 15
+    },
+    {
+        "title": "Channel i Tv",
         "country": "BD",
         "logo": "/channel_i.jpg",
         "priority" : 15
