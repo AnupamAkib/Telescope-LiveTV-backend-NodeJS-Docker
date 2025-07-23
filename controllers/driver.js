@@ -51,6 +51,9 @@ const manageChannels = async () => {
             if(!found){
                 vdo[i].country = "Z"; //no country
                 vdo[i].priority = 101; //no priority
+                if(vdo[i].channelLogo.length == 0){
+                    vdo[i].channelLogo = hostname+"/assets/logo/icon-new.png";
+                }
             }
         }
 
